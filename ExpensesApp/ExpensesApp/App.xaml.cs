@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpensesApp.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +12,9 @@ namespace ExpensesApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            // MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage()); // cf ContentPage, MasterDetailPage, TabbedPage, CarouselPage
+
         }
 
         protected override void OnStart()

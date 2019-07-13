@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpensesApp.Views.ExpensesPage">
+<!-- toolbar on this page -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="add.png" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+<!--        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>  -->
+        <ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell />    <!-- no bound data in here-->
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
