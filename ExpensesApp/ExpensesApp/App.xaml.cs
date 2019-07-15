@@ -27,10 +27,11 @@ namespace ExpensesApp
         {
             InitializeComponent();
 
+            DatabasePath = databasePath;                    // initialise db path from constructor parameter
+            
             // MainPage = new MainPage();
             MainPage = new NavigationPage(new MainPage()); // cf ContentPage, MasterDetailPage, TabbedPage, CarouselPage
 
-            DatabasePath = databasePath;                    // initialise db path from constructor parameter
         }
 
         protected override void OnStart()

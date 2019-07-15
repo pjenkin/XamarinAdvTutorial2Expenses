@@ -1,10 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ExpensesApp.ViewModels"
              x:Class="ExpensesApp.Views.ExpensesPage">
-<!-- toolbar on this page -->
+
+    <!-- Static Resource for commands here - key ie name is 'vm' ie expenses-ViewModel -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:ExpensesVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- toolbar on this page - use for command static resource vm ie expenses-ViewModel -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="add.png" />
+        <ToolbarItem Icon="add.png" 
+                     Command="{Binding Source={StaticResource vm}, Path=AddExpenseCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
 <!--        <StackLayout>
