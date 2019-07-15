@@ -1,7 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ExpensesApp.ViewModels"
              x:Class="ExpensesApp.Views.NewExpensePage">
+    <!-- put in a namespace attribute for view models "veem" so as to link up/bind buttons to code -->
+    
+    <!-- static resource (to NewExpenseVM with useful code therein), with a key/name of vm -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:NewExpenseVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save"
+                     Command="{Binding Source={StaticResource vm}, Path=SaveExpenseCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    
     <ContentPage.Content>
         <StackLayout>
             <!--            <Label Text="Welcome to Xamarin.Forms!"

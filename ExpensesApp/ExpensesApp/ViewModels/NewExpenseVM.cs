@@ -3,23 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace ExpensesApp.ViewModels
 {
     class NewExpenseVM : INotifyPropertyChanged
     {
-        /*
-                public string Name { get; set; }
 
-                public float Amount { get; set; }
 
-                [MaxLength(25)]
-                public string Description { get; set; }
-
-                public DateTime Date { get; set; }
-
-                public string Category { get; set; }
-        */
 
         private string expenseName;
 
@@ -67,9 +58,16 @@ namespace ExpensesApp.ViewModels
             set { ExpenseCategory = value; OnPropertyChanged("ExpenseCategory"); }
         }
 
+        // Command for MVVM saving an expense record - cf xaml - used as path value in command attribute
+        public Command SaveExpenseCommand { get; set; }
 
+
+        /// <summary>
+        /// constructor initialising the VM command for a button to add an expense record
+        /// </summary>
         public NewExpenseVM()
         {
+            SaveExpenseCommand = new Command(InsertExpense);      // overload command in this case (as with addnewexpense) with InsertExpense action/method
         }
 
         public event PropertyChangedEventHandler PropertyChanged;     // Alt+Enter at class to generate boilerplate
@@ -96,7 +94,17 @@ namespace ExpensesApp.ViewModels
                 Description = ExpenseDescription
             };
 
-            Expense.InsertExpense(expense);
+            int response = Expense.InsertExpense(expense);      // try adding an expense record
+
+            if (response > 0)
+            {
+                Application.Current.MainPage.Navigation.PopAsync();     // NB PopAsync from back stack in application  - ie go back to previous page
+                // NB using Xamarin.Forms.Application *not* Xamarin.Forms.PlatformConfiguration.AndroidSpecific.Application
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "No expense items were inserted", "OK");
+            }
         }
 
 
