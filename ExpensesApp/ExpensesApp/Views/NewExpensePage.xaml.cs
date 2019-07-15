@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ExpensesApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewExpenses : ContentPage
+	public partial class NewExpensePage : ContentPage
 	{
-		public NewExpenses ()
+		public NewExpensePage ()
 		{
 			InitializeComponent ();
 		}
