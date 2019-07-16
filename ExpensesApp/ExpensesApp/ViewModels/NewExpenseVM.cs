@@ -41,14 +41,25 @@ namespace ExpensesApp.ViewModels
             set { expenseDescription = value; OnPropertyChanged("ExpenseDescription"); }
         }
 
+        /*
+                private DateTime? expenseDate;      // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
 
-        private DateTime? expenseDate;      // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
-
-        public DateTime? ExpenseDate        // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
+                public DateTime? ExpenseDate        // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
+                {
+                    get { return expenseDate; }
+                    set { expenseDate = value; OnPropertyChanged("ExpenseDate"); }
+                }
+        */
+        // video 2-9 set today's date in code-behind instead of nullable/TargetNullValue
+        // private DateTime? expenseDate;      // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
+        private DateTime expenseDate;          // video 2-9 set today's date in code-behind instead of nullable/TargetNullValue
+        //public DateTime? ExpenseDate        // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
+        public DateTime ExpenseDate        // video 2-9 set today's date in code-behind instead of nullable/TargetNullValue
         {
             get { return expenseDate; }
             set { expenseDate = value; OnPropertyChanged("ExpenseDate"); }
         }
+
 
         private string expenseCategory;
 
@@ -67,6 +78,7 @@ namespace ExpensesApp.ViewModels
         /// </summary>
         public NewExpenseVM()
         {
+            ExpenseDate = DateTime.Today;           // video's way of code-behind setting date (instead of using nullable/TargetNullVaue)
             SaveExpenseCommand = new Command(InsertExpense);      // overload command in this case (as with addnewexpense) with InsertExpense action/method
         }
 

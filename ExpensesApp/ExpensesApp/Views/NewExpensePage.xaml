@@ -5,7 +5,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              x:Class="ExpensesApp.Views.NewExpensePage">
     <!-- put in a namespace attribute for view models "veem" so as to link up/bind buttons to code -->
-    <!-- System namespace for nullabletoday's date // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317-->
+    <!-- System namespace for nullabletoday's date; maybe should be assembly=netstandard // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317-->
     <!-- static resource (to NewExpenseVM with useful code therein), with a key/name of vm -->
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -34,8 +34,9 @@
                    Keyboard="Numeric"/>
             <Entry Placeholder="Short description"
                    Text="{Binding ExpenseDescription, Mode=TwoWay}"/>
-            <DatePicker Date="{Binding ExpenseDate, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}"/>
-            <!-- // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317 -->
+            <DatePicker Date="{Binding ExpenseDate, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}"
+                        Format="dd/MMM/yyyy"/>
+            <!-- // TargetNullValue not actually used - had been using nullable to get today's date https://stackoverflow.com/a/23431551/11365317 -->
             <Picker SelectedItem="{Binding ExpenseCategory, Mode=TwoWay}"/>
         </StackLayout>
     </ContentPage.Content>

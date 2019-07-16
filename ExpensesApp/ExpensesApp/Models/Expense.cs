@@ -17,7 +17,8 @@ namespace ExpensesApp.Models
         [MaxLength(25)]
         public string Description { get; set; }
 
-        public DateTime? Date { get; set; }             // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
+        //        public DateTime? Date { get; set; }             // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
+                public DateTime Date { get; set; }             // video 2-9 set today's date in code-behind instead of nullable/TargetNullValue
 
         public string Category { get; set; }
 
