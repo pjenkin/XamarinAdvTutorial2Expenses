@@ -23,7 +23,7 @@ namespace ExpensesApp.ViewModels
 
             Categories.Clear();
             Categories.Add("Housing");                              // populate member variable with category names
-            Categories.Add("Debt wtf");
+            Categories.Add("Borrowing Repayment");
             Categories.Add("Health");
             Categories.Add("Food");
             Categories.Add("Personal");

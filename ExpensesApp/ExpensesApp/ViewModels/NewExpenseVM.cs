@@ -42,9 +42,9 @@ namespace ExpensesApp.ViewModels
         }
 
 
-        private DateTime expenseDate;
+        private DateTime? expenseDate;      // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
 
-        public DateTime ExpenseDate
+        public DateTime? ExpenseDate        // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
         {
             get { return expenseDate; }
             set { expenseDate = value; OnPropertyChanged("ExpenseDate"); }

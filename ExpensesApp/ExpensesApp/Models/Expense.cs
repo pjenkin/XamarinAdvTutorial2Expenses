@@ -17,7 +17,7 @@ namespace ExpensesApp.Models
         [MaxLength(25)]
         public string Description { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }             // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317
 
         public string Category { get; set; }
 

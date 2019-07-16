@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:ExpensesApp.ViewModels"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
              x:Class="ExpensesApp.Views.NewExpensePage">
     <!-- put in a namespace attribute for view models "veem" so as to link up/bind buttons to code -->
-    
+    <!-- System namespace for nullabletoday's date // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317-->
     <!-- static resource (to NewExpenseVM with useful code therein), with a key/name of vm -->
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -19,17 +20,23 @@
     
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout
+                BindingContext="{Binding Source={StaticResource vm}}">
             <!--            <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 -->
-            <Entry Placeholder="Expense name"/>
+            <Entry Placeholder="Expense name"
+                   Text="{Binding ExpenseName, Mode=TwoWay}"
+                    />
             <Entry Placeholder="Amount"
+                   Text="{Binding ExpenseAmount, Mode=TwoWay}"
                    Keyboard="Numeric"/>
-            <Entry Placeholder="Short description"/>
-            <DatePicker/>
-            <Picker/>
+            <Entry Placeholder="Short description"
+                   Text="{Binding ExpenseDescription, Mode=TwoWay}"/>
+            <DatePicker Date="{Binding ExpenseDate, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}"/>
+            <!-- // made nullable to get today's date https://stackoverflow.com/a/23431551/11365317 -->
+            <Picker SelectedItem="{Binding ExpenseCategory, Mode=TwoWay}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
