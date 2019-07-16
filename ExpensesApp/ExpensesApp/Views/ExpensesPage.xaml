@@ -22,10 +22,12 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>  -->
-        <ListView>
+        <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=Expenses}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell />    <!-- no bound data in here-->
+                    <TextCell 
+                        Text="{Binding Name}"
+                        Detail="{Binding Category}"/>    <!-- no bound data in here-->
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

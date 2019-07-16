@@ -1,6 +1,7 @@
 ﻿using ExpensesApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
@@ -66,11 +67,18 @@ namespace ExpensesApp.ViewModels
         public string ExpenseCategory
         {
             get { return expenseCategory; }
-            set { ExpenseCategory = value; OnPropertyChanged("ExpenseCategory"); }
+            set { expenseCategory = value; OnPropertyChanged("ExpenseCategory"); }
+            // NoooooO! typing ExpenseCategory instead of expenseCategory in the setter cost me hours in terms of a malfunctioning Picker (selection crashed app with no exception thrown) for Category :-< !!!
         }
 
         // Command for MVVM saving an expense record - cf xaml - used as path value in command attribute
         public Command SaveExpenseCommand { get; set; }
+
+        /// <summary>
+        /// ObservableCollection added similar to Categories in CategoriesVM
+        /// </summary>
+        public ObservableCollection<string> Categories { get; set; }    // code-behind for category picker list when using NewExpense page
+
 
 
         /// <summary>
@@ -78,8 +86,10 @@ namespace ExpensesApp.ViewModels
         /// </summary>
         public NewExpenseVM()
         {
+            Categories = new ObservableCollection<string>();
             ExpenseDate = DateTime.Today;           // video's way of code-behind setting date (instead of using nullable/TargetNullVaue)
             SaveExpenseCommand = new Command(InsertExpense);      // overload command in this case (as with addnewexpense) with InsertExpense action/method
+            GetCategories();                        // populate Category picker
         }
 
         public event PropertyChangedEventHandler PropertyChanged;     // Alt+Enter at class to generate boilerplate
@@ -119,6 +129,21 @@ namespace ExpensesApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Populate picker list code-behind with categories (when using NewExpense page)
+        /// </summary>
+        private void GetCategories()
+        {
+            // throw new NotImplementedException();
 
+            Categories.Clear();
+            Categories.Add("Housing");                              // populate member variable with category names
+            Categories.Add("Borrowing Repayment");
+            Categories.Add("Health");
+            Categories.Add("Food");
+            Categories.Add("Personal");
+            Categories.Add("Transportation");
+            Categories.Add("Other");
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace ExpensesApp.ViewModels
 
     class CategoriesVM
     {
-        public ObservableCollection<string> Categories { get; set; }
+        public ObservableCollection<string> Categories { get; set; }        // code-behind for picker list
 
 
         public CategoriesVM()
@@ -16,7 +16,10 @@ namespace ExpensesApp.ViewModels
             Categories = new ObservableCollection<string>();        // initialise member variable
             GetCategories();
         }
-
+        
+        /// <summary>
+        /// Populate the picker list's code-behind with category values
+        /// </summary>
         private void GetCategories()
         {
             // throw new NotImplementedException();
