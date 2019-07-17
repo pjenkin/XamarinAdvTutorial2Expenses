@@ -27,6 +27,7 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 -->
+            <!-- 
             <Entry Placeholder="Expense name"
                    Text="{Binding ExpenseName, Mode=TwoWay}"
                     />
@@ -36,11 +37,53 @@
             <Entry Placeholder="Short description"
                    Text="{Binding ExpenseDescription, Mode=TwoWay}"/>
             <DatePicker Date="{Binding ExpenseDate, Mode=TwoWay}"
-                        Format="dd/MMM/yyyy"/>
+                        Format="dd/MMM/yyyy"/> -->
             <!-- // , TargetNullValue={x:Static System:DateTime.Now} not actually used - had been using nullable to get today's date https://stackoverflow.com/a/23431551/11365317 -->
+            <!-- 
             <Picker SelectedItem="{Binding ExpenseCategory, Mode=TwoWay}"
-                    ItemsSource="{Binding Categories}"/>
+                    ItemsSource="{Binding Categories}"/> -->
             <!-- ItemsSource="{Binding Categories}"-->
+            <TableView>
+                <TableRoot>
+                    <TableSection>
+                        <EntryCell Label="Name:" 
+                                   Placeholder="Expense Name" 
+                                   Text="{Binding ExpenseName, Mode=TwoWay}"/>
+                        <EntryCell Label="Amount:" 
+                                   Placeholder="Expense Amount" 
+                                   Text="{Binding ExpenseAmount, Mode=TwoWay}"/>
+                        <EntryCell Label="Description:" 
+                                   Placeholder="Short expense description" 
+                                   Text="{Binding ExpenseName, Mode=TwoWay}"/>
+                        <ViewCell>
+                            <StackLayout
+                                Orientation="Horizontal"
+                                Margin="16, 0">
+                                <Label Text="Date:"
+                                       VerticalOptions="Center"/>
+                                <DatePicker 
+                                Date="{Binding ExpenseDate, Mode=TwoWay}"
+                                Format="dd/MMM/yyyy" 
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"/> 
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout
+                                Orientation="Horizontal"
+                                Margin="16, 0">
+                                <Label Text="Category:"
+                                       VerticalOptions="Center"/>
+                                <Picker 
+                                SelectedItem="{Binding ExpenseCategory, Mode=TwoWay}"
+                                ItemsSource="{Binding Categories}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
