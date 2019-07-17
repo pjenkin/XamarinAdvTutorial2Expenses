@@ -27,12 +27,13 @@ namespace ExpensesApp.ViewModels
         /// adding to member CategoryExpensesCollection object an instance 
         /// with sum for this category and this category's % of total for all categories
         /// </summary>
-        private void GetExpensesPerCategory()
+        public void GetExpensesPerCategory()        // public so as to also use from xaml page's code-behind (for C# binding)
         {
             // throw new NotImplementedException();
 
             // needed new GetExpenses in Expense model class, overloaded to take category parameter
 
+            CategoryExpensesCollection.Clear();             // wipe the class member, ready for an update of current expenses
             float totalExpensesAmount = Expense.GetTotalExpensesAmount();
 
 

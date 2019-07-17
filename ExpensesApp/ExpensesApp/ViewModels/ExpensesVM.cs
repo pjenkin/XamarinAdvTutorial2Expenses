@@ -27,7 +27,7 @@ namespace ExpensesApp.ViewModels
         /// bespoke method to loop through expenses from db & assign to class member
         /// NB not possible to assign directly to ObservableCollection, hence must loop & push
         /// </summary>
-        private void GetExpenses()
+        public void GetExpenses()           // must be public so as to use from page's code-behind when Observable change-in-value has triggered an OnAppearing
         {
             // throw new NotImplementedException();
             var expenses = Expense.GetExpenses();

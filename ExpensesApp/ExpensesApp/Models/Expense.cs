@@ -83,6 +83,5 @@ namespace ExpensesApp.Models
                 return connection.Table<Expense>().ToList().Sum(ex => ex.Amount);   // get *un*filtered / i.e. all expenses & use LINQ to sum
             }
         }
-
     }
 }
