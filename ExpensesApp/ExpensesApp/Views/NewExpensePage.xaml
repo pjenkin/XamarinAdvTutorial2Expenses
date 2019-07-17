@@ -50,6 +50,7 @@
                                    Placeholder="Expense Name" 
                                    Text="{Binding ExpenseName, Mode=TwoWay}"/>
                         <EntryCell Label="Amount:" 
+                                   Keyboard="Numeric"
                                    Placeholder="Expense Amount" 
                                    Text="{Binding ExpenseAmount, Mode=TwoWay}"/>
                         <EntryCell Label="Description:" 
