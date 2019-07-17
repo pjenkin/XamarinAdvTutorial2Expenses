@@ -43,7 +43,7 @@
             <Picker SelectedItem="{Binding ExpenseCategory, Mode=TwoWay}"
                     ItemsSource="{Binding Categories}"/> -->
             <!-- ItemsSource="{Binding Categories}"-->
-            <TableView>
+            <TableView x:Name="expenseTableView">   <!-- x:Name not preferred if ordinary binding is possible -->
                 <TableRoot>
                     <TableSection>
                         <EntryCell Label="Name:" 

@@ -79,6 +79,7 @@ namespace ExpensesApp.ViewModels
         /// </summary>
         public ObservableCollection<string> Categories { get; set; }    // code-behind for category picker list when using NewExpense page
 
+        public ObservableCollection<ExpenseStatus> ExpenseStatuses { get; set; }
 
 
         /// <summary>
@@ -87,6 +88,7 @@ namespace ExpensesApp.ViewModels
         public NewExpenseVM()
         {
             Categories = new ObservableCollection<string>();
+            ExpenseStatuses = new ObservableCollection<ExpenseStatus>();
             ExpenseDate = DateTime.Today;           // video's way of code-behind setting date (instead of using nullable/TargetNullVaue)
             SaveExpenseCommand = new Command(InsertExpense);      // overload command in this case (as with addnewexpense) with InsertExpense action/method
             GetCategories();                        // populate Category picker
@@ -107,6 +109,7 @@ namespace ExpensesApp.ViewModels
         /// </summary>
         public void InsertExpense()
         {
+            var vm = this;
             Expense expense = new Expense()
             {
                 Name = ExpenseName,
@@ -114,6 +117,8 @@ namespace ExpensesApp.ViewModels
                 Category = ExpenseCategory,
                 Date = ExpenseDate,
                 Description = ExpenseDescription
+
+                // TODO not yet saving in Expense object the ExpenseStatus status values of 2-11
             };
 
             int response = Expense.InsertExpense(expense);      // try adding an expense record
@@ -144,6 +149,33 @@ namespace ExpensesApp.ViewModels
             Categories.Add("Personal");
             Categories.Add("Transportation");
             Categories.Add("Other");
+        }
+
+        public void GetExpenseStatus()
+        {
+            ExpenseStatuses.Clear();
+            ExpenseStatuses.Add(new ExpenseStatus()       // just for demonstration, as if fetched from internet
+             {
+                    Name= "Some random data 1",
+                    Status = true
+            } );
+            ExpenseStatuses.Add(new ExpenseStatus()       // just for demonstration, as if fetched from internet
+            {
+                Name = "Some random data 2",
+                Status = false
+            });
+            ExpenseStatuses.Add(new ExpenseStatus()       // just for demonstration, as if fetched from internet
+            {
+                Name = "Some random data 3",
+                Status = true
+            });
+        }
+
+        public class ExpenseStatus
+        {
+            public string Name { get; set; }
+
+            public bool Status { get; set; }
         }
     }
 }
