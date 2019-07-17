@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ExpensesApp.Models
@@ -55,7 +56,33 @@ namespace ExpensesApp.Models
             }
         }
 
+        /// <summary>
+        /// Read from local db - get list of recorded Expense items
+        /// Overload to take category parameter (for listing expenses by category)
+        /// This will enable an ObservableCollection<Expense> to be instantiated in some class using this
+        /// </summary>
+        public static List<Expense> GetExpenses(string category)
+        {
+            using (SQLite.SQLiteConnection connection = new SQLiteConnection(App.DatabasePath))
+            {
+                connection.CreateTable<Expense>();
+                return connection.Table<Expense>().Where(ex => ex.Category == category).ToList();   // get only expenses put down to requested category
+            }
+        }
 
+        /// <summary>
+        /// Get the sum of all recorded expenses as a total value
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public static float GetTotalExpensesAmount()
+        {
+            using (SQLite.SQLiteConnection connection = new SQLiteConnection(App.DatabasePath))
+            {
+                connection.CreateTable<Expense>();
+                return connection.Table<Expense>().ToList().Sum(ex => ex.Amount);   // get *un*filtered / i.e. all expenses & use LINQ to sum
+            }
+        }
 
     }
 }
