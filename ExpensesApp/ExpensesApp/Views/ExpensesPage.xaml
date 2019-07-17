@@ -14,7 +14,8 @@
     <!-- toolbar on this page - use for command static resource vm ie expenses-ViewModel -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="add.png" 
-                     Command="{Binding Source={StaticResource vm}, Path=AddExpenseCommand}"/>
+                     Command="{Binding Source={StaticResource vm}, Path=AddExpenseCommand}"
+                     />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
 <!--        <StackLayout>
@@ -22,12 +23,12 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>  -->
-        <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=Expenses}">
+        <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=Expenses}"> <!-- use VM's ObservableCollection member Expenses for Path -->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell 
                         Text="{Binding Name}"
-                        Detail="{Binding Category}"/>    <!-- no bound data in here-->
+                        Detail="{Binding Category}"/>    <!-- bound data in here-->
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

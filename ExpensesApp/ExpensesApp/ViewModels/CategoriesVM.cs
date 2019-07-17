@@ -34,4 +34,6 @@ namespace ExpensesApp.ViewModels
             Categories.Add("Other");
         }
     }
+
+    
 }
