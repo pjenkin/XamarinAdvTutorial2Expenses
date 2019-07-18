@@ -24,7 +24,40 @@ namespace ExpensesApp.iOS.CustomRenderers
         {
             base.OnElementChanged(e);
 
-            LayoutSubviews();           //re-scale the progress bar
+
+
+            // NB parameter 'e' is the original element (before being changed by custom renderer) - its NewElement is the custom rendered version of the element
+
+            
+                        if (double.IsNaN(e.NewElement.Progress))        // Progress of 1 is 100%
+                        {
+                            Control.ProgressTintColor = Color.FromHex("#0089ae").ToUIColor();   // fine if no value yet in this category - greenish
+                        }
+                        else if (e.NewElement.Progress < 0.3)
+                        {   // using brackets cos i d'like em
+                            Control.ProgressTintColor = Color.FromHex("#008dd5").ToUIColor();   // increasingly red-der colours as the category has a higher progress/% (of total expenditure)
+                        }
+                        else if (e.NewElement.Progress < 0.5)
+                        {   // using brackets cos i d'like em
+                            Control.ProgressTintColor = Color.FromHex("#2d76ba").ToUIColor();   // increasingly red-der colours as the category has a higher progress/% (of total expenditure)
+                        }
+                        else if (e.NewElement.Progress < 0.7)
+                        {   // using brackets cos i d'like em
+                            Control.ProgressTintColor = Color.FromHex("#5a5f9f").ToUIColor();   // increasingly red-der colours as the category has a higher progress/% (of total expenditure) 
+                        }
+                        else if (e.NewElement.Progress < 0.9)
+                        {   // using brackets cos i d'like em
+                            Control.ProgressTintColor = Color.FromHex("#b3316a").ToUIColor();   // increasingly red-der colours as the category has a higher progress/% (of total expenditure)
+                        }
+                        else
+                        {   // using brackets cos i d'like em
+                            Control.ProgressTintColor = Color.FromHex("#eo1a4f").ToUIColor();   // increasingly red-der colours as the category has a higher progress/% (of total expenditure) 
+                        }
+                        
+            var prog = e.NewElement.Progress;       // diagnostic
+            // colour hex values from instructor's preparation
+
+            LayoutSubviews();           // re-scale & re-colour the progress bar
         }
 
         public override void LayoutSubviews()
