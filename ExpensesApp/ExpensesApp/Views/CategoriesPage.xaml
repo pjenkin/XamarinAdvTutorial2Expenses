@@ -18,7 +18,7 @@
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>-->
 
-        <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=CategoryExpensesCollection}">
+        <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=CategoryExpensesCollection}" SeparatorColor="#efefef">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

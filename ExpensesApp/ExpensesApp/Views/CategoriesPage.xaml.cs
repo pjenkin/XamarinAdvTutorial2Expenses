@@ -21,7 +21,10 @@ namespace ExpensesApp.Views
 			InitializeComponent ();
 
             ViewModel = Resources["vm"] as CategoriesVM;    // get the VM resource using its Key string defined in xaml (type Object as default, hence cast)
-		}
+
+            // if ListView had x:Name="listView" in xaml, which is not great MVVM, could use something like listView.SeparatorColor="#efefef"; to set separator to grey in code-behind, instead of using SeparatorColor attribute in xaml 
+            // I used xaml's SeparatorColor attribute to fulfil all-grey highlight in https://www.udemy.com/the-advanced-xamarin-developer-masterclass/learn/lecture/14080176#questions/7051972
+        }
 
         protected override void OnAppearing()       // OnAppearing making use of Observable (which happened to be) in the relevant VM - notifying View on any changes
         {

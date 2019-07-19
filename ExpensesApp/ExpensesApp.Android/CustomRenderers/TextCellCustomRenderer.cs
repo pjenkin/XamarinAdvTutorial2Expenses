@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using Android.Content;
 using Android.Views;
-using ExpensesApp.iOS.CustomRenderers;
+using ExpensesApp.Droid.CustomRenderers;
 //using Foundation;
 //using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(TextCell), typeof(TextCellCustomRenderer))]
-namespace ExpensesApp.iOS.CustomRenderers
+[assembly: ExportRenderer(typeof(ViewCell), typeof(ViewCellCustomRenderer))]// cf 
+[assembly: ExportRenderer(typeof(TextCell), typeof(ExpensesApp.Droid.CustomRenderers.TextCellCustomRenderer))]
+namespace ExpensesApp.Droid.CustomRenderers
 {
     public class TextCellCustomRenderer : TextCellRenderer
     {
