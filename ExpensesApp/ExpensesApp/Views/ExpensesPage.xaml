@@ -28,7 +28,9 @@
                 <DataTemplate>
                     <TextCell 
                         Text="{Binding Name}"
-                        Detail="{Binding Category}"/>    <!-- bound data in here-->
+                        Detail="{Binding Category}"
+                        StyleId="detail-disclosure-button"/>
+                    <!-- bound data in here-->
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
