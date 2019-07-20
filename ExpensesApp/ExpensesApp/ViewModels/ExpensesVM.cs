@@ -1,4 +1,5 @@
-﻿using ExpensesApp.Models;
+﻿using ExpensesApp.Interfaces;
+using ExpensesApp.Models;
 using ExpensesApp.Views;
 using System;
 using System.Collections.Generic;
@@ -46,10 +47,16 @@ namespace ExpensesApp.ViewModels
         /// </summary>
         public void AddExpense()
         {
+            ShareReport();      // this just a demo call of the Dependency Injected Share'd instance
             // Navigate, using the application context, to a new-expense page
             Application.Current.MainPage.Navigation.PushAsync(new NewExpensePage());        // NB make sure to use Xamarin.Forms. for Application
         }
 
+        public void ShareReport()
+        {
+            IShare shareDependency = DependencyService.Get<IShare>();  // instantiate using interface and Dependency Service
 
+            shareDependency.Show("", "", "");       // use Show method of implemented IShare interface
+        }
     }
 }

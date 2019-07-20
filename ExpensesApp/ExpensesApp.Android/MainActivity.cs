@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using System.IO;
+using Xamarin.Forms;
+using ExpensesApp.Droid.Dependencies;
 
 namespace ExpensesApp.Droid
 {
@@ -24,6 +26,9 @@ namespace ExpensesApp.Droid
             string db_name = "expenses_db.db3";
             string folder_path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             string full_path = Path.Combine(folder_path, db_name);      // db path
+
+            DependencyService.Register<Share>();        // register our Share (share data between platforms) as a dependency
+            // Using XamarinForms.Dependency
 
 
             //LoadApplication(new App());

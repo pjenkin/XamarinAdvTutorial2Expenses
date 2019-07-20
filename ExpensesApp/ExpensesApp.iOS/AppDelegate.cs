@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using ExpensesApp.iOS.Dependencies;
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace ExpensesApp.iOS
 {
@@ -28,6 +29,9 @@ namespace ExpensesApp.iOS
             string db_name = "expenses_db.db3";
             string folder_path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "..", "Library");
             string full_path = Path.Combine(folder_path, db_name);      // db path
+
+            // Register dependencies for DI here
+            DependencyService.Register<Share>();        // register our Share (share data between platforms) as a dependency
 
             // LoadApplication(new App());
             LoadApplication(new App(full_path));        // launch app using db path (2nd constructor overload with string parameter)

@@ -63,6 +63,7 @@
     <Compile Include="CustomRenderers\CustomProgressBarRenderer.cs" />
     <Compile Include="CustomRenderers\TextCellCustomRenderer.cs" />
     <Compile Include="CustomRenderers\ViewCellCustomRenderer.cs" />
+    <Compile Include="Dependencies\Share.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

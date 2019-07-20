@@ -1,9 +1,11 @@
-﻿using ExpensesApp.Models;
+﻿using ExpensesApp.Interfaces;
+using ExpensesApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using Xamarin.Forms;
 
 namespace ExpensesApp.ViewModels
 {
@@ -73,6 +75,16 @@ namespace ExpensesApp.ViewModels
             Categories.Add("Transportation");
             Categories.Add("Other");
         }
+
+
+        public void ShareReport()
+        {
+            IShare shareDependency = DependencyService.Get<IShare>();  // instantiate using interface and Dependency Service
+
+            shareDependency.Show("", "", "");       // use Show method of implemented IShare interface
+        }
+
+
     }
 
     // 2-10 Whole new class within the CategoriesVM class (must this go here?) used for type of ObservableCollection
