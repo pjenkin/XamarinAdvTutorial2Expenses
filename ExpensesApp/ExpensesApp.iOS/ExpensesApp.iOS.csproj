@@ -193,5 +193,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\expenses.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BundleResource Include="Resources\xml\file_provider_paths.xml" />
+  </ItemGroup>
 </Project>
