@@ -1,8 +1,10 @@
 ﻿using ExpensesApp.Interfaces;
 using ExpensesApp.Models;
+using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Xamarin.Forms;
@@ -16,8 +18,11 @@ namespace ExpensesApp.ViewModels
 
         public ObservableCollection<CategoryExpenses> CategoryExpensesCollection { get; set; }        // use nested class, used as Path for Binding in ItemsSource of ListView
 
+        public Command ExportCommand { get; set; }                          // command for launching Share methods (DI) - Path from xaml binding
+
         public CategoriesVM()
         {
+            ExportCommand = new Command(ShareReport);               // Path for command (from xaml binding); ShareReport as action/method to trigger
             Categories = new ObservableCollection<string>();        // initialise member variable
             CategoryExpensesCollection = new ObservableCollection<CategoryExpenses>();
             GetCategories();
@@ -77,11 +82,32 @@ namespace ExpensesApp.ViewModels
         }
 
 
-        public void ShareReport()
+        public async void ShareReport()
         {
+
+            // Add NuGet package PCLStorage for local file I/O IFolder functionality (to all projects)
+
+
+            IFileSystem fileSystem = FileSystem.Current;
+            IFolder rootFolder = fileSystem.LocalStorage;
+            IFolder reportsFolder = await rootFolder.CreateFolderAsync("reports", CreationCollisionOption.OpenIfExists);    // open a file - cf xml file_provider_paths config
+
+            var txtFile = await reportsFolder.CreateFileAsync("show_report.txt", CreationCollisionOption.ReplaceExisting);
+
+            using (StreamWriter sw = new StreamWriter(txtFile.Path))
+            {
+                // Iterate through the Observable collection of category expenses
+
+                foreach (var catex in CategoryExpensesCollection)
+                {
+                    sw.WriteLine($"{ catex.Category} - {catex.ExpensesPercentage}");
+                    // Write a line for each category expense
+                }
+            }
+
             IShare shareDependency = DependencyService.Get<IShare>();  // instantiate using interface and Dependency Service
 
-            shareDependency.Show("", "", "");       // use Show method of implemented IShare interface
+            await shareDependency.Show("Expense Report", "Here is the expense report", txtFile.Path);       // use Show method of implemented IShare interface - title, message, path
         }
 
 

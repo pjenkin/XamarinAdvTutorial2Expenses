@@ -44,6 +44,11 @@ namespace ExpensesApp.Droid.Dependencies
 
             // NB no await/async in Android (unlike iOS qv) so just return a Task
             return Task.FromResult(true);
+
+        // TODO: https://github.com/LaloCo/AdvXamarin_Expenses/issues/2
+        // https://www.udemy.com/the-advanced-xamarin-developer-masterclass/learn/lecture/12387286#questions/6934532
+
+
         }
     }
 }

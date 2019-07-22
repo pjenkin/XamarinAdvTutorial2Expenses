@@ -5,8 +5,10 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
 using ExpensesApp.Droid.CustomRenderers;
@@ -33,7 +35,17 @@ namespace ExpensesApp.Droid.CustomRenderers
             if (double.IsNaN(e.NewElement.Progress))        // Progress of 1 is 100%
             {
                 //Control.ProgressTintColor = Color.FromHex("#0089ae").ToUIColor();   // fine if no value yet in this category - greenish
-                Control.ProgressDrawable.SetTint(Color.FromHex("#0089ae").ToAndroid());   // fine if no value yet in this category - greenish
+                //var color = Color.FromHex("#0089ae").ToAndroid();
+
+                //ViewCompat.SetBackgroundTintList(Control, ColorStateList.ValueOf(color));       // https://stackoverflow.com/a/47566740/11365317
+
+
+                ViewCompat.SetBackgroundTintList(Control, ColorStateList.ValueOf(Color.FromHex("#0089ae").ToAndroid()));       // https://stackoverflow.com/a/47566740/11365317
+
+                //Control.ProgressDrawable.SetTint(color);   // fine if no value yet in this category - greenish
+
+                ////Control.ProgressDrawable.SetTint(Color.FromHex("#0089ae").ToAndroid());   // fine if no value yet in this category - greenish
+
             }
             else if (e.NewElement.Progress < 0.3)
             {   // using brackets cos i d'like em

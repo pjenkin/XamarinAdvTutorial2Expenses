@@ -8,8 +8,13 @@
         <ResourceDictionary>
             <vm:CategoriesVM x:Key="vm"/>
         </ResourceDictionary>
-    </ContentPage.Resources>    
-    
+    </ContentPage.Resources>
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Export"
+                     Command="{Binding Source={StaticResource vm}, Path=ExportCommand}"/>
+    </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
 <!--`       <StackLayout>
